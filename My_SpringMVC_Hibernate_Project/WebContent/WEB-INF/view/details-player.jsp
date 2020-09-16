@@ -6,23 +6,21 @@
 <head>
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css"/>
 
-<title> Juventus FC Players</title>
+<title> Details </title>
 
 </head>
 
 <body>
 <div class="header">
-<h2>Players  </h2>
+<h2>Player Details  </h2>
 </div>
 <table class="greyGridTable">
-<c:forEach var="thePlayer" items="${players}">
+<c:forEach var="detail","player" items="${detail,player}">
 
-<c:url var="det" value="/juve/showDetails">
-<c:param name="playerId" value="${thePlayer.id }"/>
-
+<c:url var="upd" value="/juve/updateForm">
+<c:param name="detailId" value="${detail.id }"/>
+<c:param name="playerId" value="${player.id }"/>
 </c:url>
-
-
 
 <thead>
 <tr>
@@ -34,13 +32,13 @@
 </thead>
 <tbody>
 <tr>
-<td> ${thePlayer.id}  </td>
+<td> ${detail.id}  </td>
 
-<td>${thePlayer.firstName}</td>
-<td>${thePlayer.lastName}</td>
-<td> <a href = "${det}">Details</a> 
+<td>${detail.shirtNumber}</td>
+<td>${detail.country}</td>
+<td>${player.country }</td>
+<td> <a href = "${upd}">Update</a> 
  </td>
-		
 </tr>
 
 </tbody>
