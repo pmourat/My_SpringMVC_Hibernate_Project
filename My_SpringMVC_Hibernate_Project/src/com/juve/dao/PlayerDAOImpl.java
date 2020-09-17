@@ -15,11 +15,11 @@ import com.juve.entity.Player;
 public class PlayerDAOImpl implements PlayerDAO {
 	
 	@Autowired
-	private SessionFactory sessionfactory;
+	private SessionFactory sessionFactory;
 	
 	@Override
 	public List<Player> getPlayers() {
-		Session currentSession = sessionfactory.getCurrentSession();
+		Session currentSession = sessionFactory.getCurrentSession();
 		Query<Player> theQuery = 
 				currentSession.createQuery("from Player order by id",Player.class);
 		List<Player> players = theQuery.getResultList();
@@ -27,11 +27,25 @@ public class PlayerDAOImpl implements PlayerDAO {
 	}
 
 	@Override
-	public List<Player> getPlayer(int theId2) {
-		Session currentSession = sessionfactory.getCurrentSession();
+	public Player getPlayer(int theId2) {
+		Session currentSession = sessionFactory.getCurrentSession();
 		Player thePlayer = currentSession.get(Player.class, theId2);
-		List<Player> p = new ArrayList<>();
-		return p;
+		return thePlayer;
+	}
+
+	@Override
+	public Player savePlayer(Player thePlayer) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		currentSession.saveOrUpdate(thePlayer);
+		return null;
+	}
+
+	@Override
+	public Player deletePLayer(int theId) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Player myPlayer = currentSession.get(Player.class, theId);
+		currentSession.delete(myPlayer);
+		return null;
 	}
 
 }

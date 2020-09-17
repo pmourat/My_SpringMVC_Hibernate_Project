@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.juve.entity.Player;
-import com.juve.entity.PlayerDetail;
 import com.juve.service.PlayerService;
 
 @Controller
@@ -30,30 +31,42 @@ public class JuveController {
 		return "list-players";
 	}
 	
-	@GetMapping("/showDetails")
-		public String playerDetails(@RequestParam("detailId") int theId, @RequestParam("playerId") int theId2, Model theModel) {
-		List<PlayerDetail> theDetail = playerService.getPlayerDetails(theId);
-		List<Player> thePlayer = playerService.getPlayer(theId2);
 
-		theModel.addAttribute("detail",theDetail);
+
+	@GetMapping("/formForAdd")
+	public String formForAdd(Model theModel) {
+		Player thePlayer = new Player();
 		theModel.addAttribute("player",thePlayer);
-
-		return "details-player";
-		}
+		return "player-form";
 		
-
-	
-	
-	
-	
-	
-	@GetMapping("/updateForm")
-	public String updateForm(@RequestParam("detailId") int theId,@RequestParam("playerId") int theId2,Model theModel) {
-		List<PlayerDetail> theDetail = playerService.getPlayerDetails(theId);
-		List<Player> thePlayer = playerService.getPlayer(theId2);
-		theModel.addAttribute("detail",theDetail);
-		theModel.addAttribute("player",thePlayer);
-		return"update-details";
 	}
+	
+	@PostMapping("/savePlayer")
+	public String savePlayer (@ModelAttribute("player")Player thePlayer,Model theModel){
+		playerService.savePlayer(thePlayer);
+		
+		return "redirect:players";
+		
+		
+	}
+	
+	@GetMapping("/deletePlayer")
+	public String deletePlayer(@RequestParam("playerId") int theId,Model theModel) {
+		
+		playerService.deletePlayer(theId);
+	
+		return "redirect:players";	
+			}
 
+	
+
+	@GetMapping("/editPlayer")
+	public String editPlayer(@RequestParam("playerId") int theId,Model theModel) {
+ 	Player thePlayer = playerService.getPlayer(theId);
+		
+		theModel.addAttribute("player",thePlayer);
+		return "player-form";	
+			}
+	
+	
 }

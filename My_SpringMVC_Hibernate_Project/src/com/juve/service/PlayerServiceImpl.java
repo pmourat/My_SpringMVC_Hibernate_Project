@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.juve.dao.PlayerDAO;
-import com.juve.dao.PlayerDetailsDAO;
 import com.juve.entity.Player;
-import com.juve.entity.PlayerDetail;
 
 @Service
 public class PlayerServiceImpl implements PlayerService {
@@ -18,25 +16,36 @@ public class PlayerServiceImpl implements PlayerService {
 	@Autowired
 	private PlayerDAO playerDAO;
 	
-	@Autowired
-	private PlayerDetailsDAO playerDetailsDAO;
-
+	
 	@Override
 	@Transactional
 	public List<Player> getPlayers() {
 		return playerDAO.getPlayers();
 	}
 
-	@Override
-	@Transactional
-	public List<PlayerDetail> getPlayerDetails(int Id) {
-		return playerDetailsDAO.getPlayerDetails(Id);
-	}
+	
 
 	@Override
-	public List<Player> getPlayer(int theId2) {
+	@Transactional
+	public Player getPlayer(int theId2) {
 		return playerDAO.getPlayer(theId2);
 	}
 
+	@Override
+	@Transactional
+	public Player savePlayer(Player thePlayer) {
+		
+		return  playerDAO.savePlayer(thePlayer);
+	}
+
+
+
+	@Override
+	@Transactional
+	public Player deletePlayer(int theId) {
+		return playerDAO.deletePLayer(theId);
+	}
+
+	
 	
 }

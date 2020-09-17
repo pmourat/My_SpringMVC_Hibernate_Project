@@ -8,5 +8,9 @@ public interface PlayerDAO {
 	
 	public List<Player> getPlayers();
 
-	public List<Player> getPlayer(int theId2);
+	public Player getPlayer(int theId2);
+
+	public Player savePlayer(Player thePlayer);
+
+	public Player deletePLayer(int theId);
 }

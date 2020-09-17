@@ -25,10 +25,16 @@ public class Player {
 	@Column(name="last_name")
 	private String lastName;
 	
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JoinColumn(name="player_detail_id")
-	private PlayerDetail playerDetailId;
-
+	@Column(name="shirt_number")
+	private String shirtNumber;
+	
+	@Column(name="country")
+	private String country;
+	
+	@Column(name="fifa_rating")
+	private String fifaRating;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -53,20 +59,40 @@ public class Player {
 		this.lastName = lastName;
 	}
 
-	public PlayerDetail getPlayerDetailId() {
-		return playerDetailId;
+	public String getShirtNumber() {
+		return shirtNumber;
 	}
 
-	public void setPlayerDetailId(PlayerDetail playerDetailId) {
-		this.playerDetailId = playerDetailId;
+	public void setShirtNumber(String shirtNumber) {
+		this.shirtNumber = shirtNumber;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getFifaRating() {
+		return fifaRating;
+	}
+
+	public void setFifaRating(String fifaRating) {
+		this.fifaRating = fifaRating;
 	}
 
 	@Override
 	public String toString() {
-		return "Player [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", playerDetailId="
-				+ playerDetailId + "]";
+		return "Player [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", shirtNumber="
+				+ shirtNumber + ", country=" + country + ", fifaRating=" + fifaRating + "]";
 	}
 
+	
+
+	
+	
 	
 	
 }
