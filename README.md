@@ -1,3 +1,7 @@
 # My_SpringMVC_Hibernate_Project
 
-My first Spring MVC project with Hibernate
+My first Spring MVC project with Hibernate, based on things that i've learned from a Udemy tutorial. (Different project from tutorial's project)
+
+Java 8
+Spring 5.2
+Hibernate 5
