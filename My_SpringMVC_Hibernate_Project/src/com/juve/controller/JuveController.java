@@ -1,4 +1,4 @@
-package com.juve.controler;
+package com.juve.controller;
 
 import java.util.List;
 
